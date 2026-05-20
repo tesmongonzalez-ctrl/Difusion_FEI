@@ -7,6 +7,10 @@
 <title>Sistema de difusión académica FEI</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -17,54 +21,46 @@ body {
 .header {
     background: #213943;
     color: white;
-    padding: 24px 38px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 22px 40px;
     border-bottom: 6px solid #00843D;
 }
 
-.logo-area {
+.header-content {
     display: flex;
-    gap: 14px;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 25px;
 }
 
-.logo-area a {
-    display: inline-flex;
+.left-logos,
+.right-logos {
+    display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
 }
 
-.logo-area img {
-    height: 68px;
-    max-width: 120px;
+.left-logos img,
+.right-logos img {
+    height: 62px;
+    width: 78px;
     object-fit: contain;
     background: white;
     border-radius: 8px;
     padding: 6px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.logo-area img:hover {
-    transform: scale(1.06);
-    box-shadow: 0 4px 12px rgba(255,255,255,0.35);
 }
 
 .header-title {
     text-align: center;
     flex: 1;
-    padding: 0 20px;
 }
 
 .header-title h1 {
     margin: 0;
-    font-size: 31px;
+    font-size: 32px;
 }
 
 .header-title p {
-    margin: 6px 0 0 0;
+    margin: 6px 0 0;
     font-size: 16px;
 }
 
@@ -75,7 +71,6 @@ body {
 
 .main h2 {
     font-size: 34px;
-    color: #243447;
     margin-bottom: 12px;
 }
 
@@ -83,7 +78,7 @@ body {
     font-size: 20px;
     color: #555;
     max-width: 900px;
-    margin: 0 auto 25px auto;
+    margin: 0 auto 25px;
 }
 
 .line {
@@ -116,7 +111,7 @@ body {
 }
 
 .stat p {
-    margin: 8px 0 0 0;
+    margin: 8px 0 0;
     color: #555;
 }
 
@@ -137,7 +132,6 @@ body {
 }
 
 .card h3 {
-    color: #243447;
     font-size: 24px;
     margin-top: 0;
 }
@@ -170,15 +164,15 @@ body {
     margin-top: 50px;
 }
 
-@media(max-width: 850px) {
-    .header {
+@media(max-width: 900px) {
+    .header-content {
         flex-direction: column;
-        text-align: center;
     }
 
-    .logo-area {
+    .left-logos,
+    .right-logos {
         justify-content: center;
-        margin: 10px 0;
+        flex-wrap: wrap;
     }
 
     .main h2 {
@@ -190,47 +184,50 @@ body {
 
 <body>
 
-<div class="header">
+<header class="header">
+    <div class="header-content">
 
-    <div class="logo-area">
-        <a href="https://www.uv.mx/" target="_blank">
-            <img src="logos/uv.jpeg" alt="Universidad Veracruzana">
-        </a>
+        <div class="left-logos">
+            <a href="https://www.uv.mx/" target="_blank">
+                <img src="logos/uv.jpeg" alt="Universidad Veracruzana">
+            </a>
 
-        <a href="https://www.uv.mx/fei/" target="_blank">
-            <img src="logos/fei.jpeg" alt="Facultad de Estadística e Informática">
-        </a>
+            <a href="https://www.uv.mx/fei/" target="_blank">
+                <img src="logos/fei.jpeg" alt="Facultad de Estadística e Informática">
+            </a>
+        </div>
+
+        <div class="header-title">
+            <h1>Universidad Veracruzana</h1>
+            <p>Facultad de Estadística e Informática</p>
+        </div>
+
+        <div class="right-logos">
+            <a href="https://www.uv.mx/fei/licenciaturas/" target="_blank">
+                <img src="logos/datos.png" alt="Ciencia de Datos">
+            </a>
+
+            <a href="https://www.uv.mx/fei/licenciaturas/" target="_blank">
+                <img src="logos/sistemas.png" alt="Sistemas">
+            </a>
+
+            <a href="https://www.uv.mx/fei/licenciaturas/" target="_blank">
+                <img src="logos/software.png" alt="Software">
+            </a>
+
+            <a href="https://www.uv.mx/fei/plan-de-estudios/licic/" target="_blank">
+                <img src="logos/ciberseguridad.png" alt="Ciberseguridad">
+            </a>
+
+            <a href="https://www.uv.mx/fei/plan-de-estudios/estadistica/" target="_blank">
+                <img src="logos/estadistica.png" alt="Estadística">
+            </a>
+        </div>
+
     </div>
+</header>
 
-    <div class="header-title">
-        <h1>Universidad Veracruzana</h1>
-        <p>Facultad de Estadística e Informática</p>
-    </div>
-
-    <div class="logo-area">
-        <a href="https://www.uv.mx/fei/licenciaturas/" target="_blank">
-            <img src="logos/datos.png" alt="Ingeniería en Ciencia de Datos">
-        </a>
-
-        <a href="https://www.uv.mx/fei/licenciaturas/" target="_blank">
-            <img src="logos/sistemas.png" alt="Ingeniería en Sistemas y Tecnologías de la Información">
-        </a>
-
-        <a href="https://www.uv.mx/fei/licenciaturas/" target="_blank">
-            <img src="logos/software.png" alt="Ingeniería de Software">
-        </a>
-
-        <a href="https://www.uv.mx/fei/plan-de-estudios/licic/" target="_blank">
-            <img src="logos/ciberseguridad.png" alt="Ingeniería de Ciberseguridad e Infraestructura de Cómputo">
-        </a>
-
-        <a href="https://www.uv.mx/fei/plan-de-estudios/estadistica/" target="_blank">
-            <img src="logos/estadistica.png" alt="Licenciatura en Estadística">
-        </a>
-
-</div>
-
-<div class="main">
+<main class="main">
     <h2>Sistema digital de difusión académica de la FEI</h2>
 
     <p class="subtitle">
@@ -246,14 +243,17 @@ body {
             <h3>1825</h3>
             <p>Bachilleratos registrados</p>
         </div>
+
         <div class="stat">
             <h3>17</h3>
             <p>Escuelas visitadas</p>
         </div>
+
         <div class="stat">
             <h3>1808</h3>
             <p>Escuelas pendientes</p>
         </div>
+
         <div class="stat">
             <h3>0.93%</h3>
             <p>Avance general</p>
@@ -285,12 +285,11 @@ body {
             <a href="#">Próximamente</a>
         </div>
     </div>
-</div>
+</main>
 
-<div class="footer">
+<footer class="footer">
     Diseño de un sistema para la difusión digital de la oferta académica de la FEI
-</div>
+</footer>
 
 </body>
 </html>
-       
