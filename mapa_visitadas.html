@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_d86c615ca093536dda2f5fd4fb4d85ed {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+    <div style="
+    position: fixed;
+    bottom: 35px;
+    left: 35px;
+    width: 260px;
+    background-color: white;
+    z-index: 9999;
+    font-size: 14px;
+    border: 1px solid #d0d0d0;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    font-family: Arial;
+    ">
+    <h4 style="margin:0 0 8px 0; color:#203040;">Escuelas visitadas</h4>
+    <span style="color:#00843D; font-size:18px;">●</span> Visitadas: <b>17</b><br>
+    <span style="color:#0057A8; font-size:18px;">●</span> Pendientes: <b>1808</b><br>
+    <br>
+    <b>Total:</b> 1825<br>
+    <b>Avance:</b> 0.93%
+    </div>
+    
+    
+            <div class="folium-map" id="map_d86c615ca093536dda2f5fd4fb4d85ed" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_d86c615ca093536dda2f5fd4fb4d85ed = L.map(
+                "map_d86c615ca093536dda2f5fd4fb4d85ed",
+                {
+                    center: [19.2, -96.6],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_d86c615ca093536dda2f5fd4fb4d85ed);
+
+            
+
+        
+    
+            var tile_layer_73bd1debfb17f48b2530fcc94bfec52e = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_73bd1debfb17f48b2530fcc94bfec52e.addTo(map_d86c615ca093536dda2f5fd4fb4d85ed);
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Full Screen",
+  "titleCancel": "Exit Full Screen",
+  "forceSeparateButton": false,
+}
+            ).addTo(map_d86c615ca093536dda2f5fd4fb4d85ed);
+        
+    
+            var tile_layer_b6062d36e8c78ac319135e153a61fa7e = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detect_retina": false, "max_native_zoom": 19, "max_zoom": 19, "min_zoom": 0, "no_wrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_538fed83035c24bd7391b8c22fdef933 = new L.Control.MiniMap(
+                tile_layer_b6062d36e8c78ac319135e153a61fa7e,
+                {
+  "position": "bottomright",
+  "width": 150,
+  "height": 150,
+  "collapsedWidth": 25,
+  "collapsedHeight": 25,
+  "zoomLevelOffset": -5,
+  "centerFixed": false,
+  "zoomAnimation": false,
+  "toggleDisplay": true,
+  "autoToggleDisplay": false,
+  "minimized": false,
+}
+            );
+            map_d86c615ca093536dda2f5fd4fb4d85ed.addControl(mini_map_538fed83035c24bd7391b8c22fdef933);
+        
+    
+            var marker_cluster_fbcb35fe1266c335cdbf2862d8c16626 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_327b6b1c22a8b599022650397deb9ce2 = L.circleMarker(
+                [19.50734, -96.61342],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_14af61badefa374a2f014b00b954db2f = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_8c728a0a8b0f97bde4dbd8529ab03d48 = $(`<div id="html_8c728a0a8b0f97bde4dbd8529ab03d48" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Centro De Bachillerato Tecnologico Industrial Y De Servicios Num. 261             </h4>             <hr>             <b>CCT:</b> 30DCT0433P<br>             <b>Municipio:</b> Actopan<br>             <b>Localidad:</b> Actopan<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-11<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_14af61badefa374a2f014b00b954db2f.setContent(html_8c728a0a8b0f97bde4dbd8529ab03d48);
+            
+        
+
+        circle_marker_327b6b1c22a8b599022650397deb9ce2.bindPopup(popup_14af61badefa374a2f014b00b954db2f)
+        ;
+
+        
+    
+    
+            var circle_marker_77fa7f0db866618af7cfd47b5d036be3 = L.circleMarker(
+                [19.57216, -96.90143],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_a4ceff9c7d0242dfc2ffc212ff6a0170 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_c7856ce1d22595c16de191ee4df24cbe = $(`<div id="html_c7856ce1d22595c16de191ee4df24cbe" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Telebachillerato La Haciendita             </h4>             <hr>             <b>CCT:</b> 30ETH1096F<br>             <b>Municipio:</b> Banderilla<br>             <b>Localidad:</b> La Haciendita<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-11<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_a4ceff9c7d0242dfc2ffc212ff6a0170.setContent(html_c7856ce1d22595c16de191ee4df24cbe);
+            
+        
+
+        circle_marker_77fa7f0db866618af7cfd47b5d036be3.bindPopup(popup_a4ceff9c7d0242dfc2ffc212ff6a0170)
+        ;
+
+        
+    
+    
+            var circle_marker_4efe89778b7aa0df5fd0ff4e03e5955a = L.circleMarker(
+                [19.46958, -96.94706],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_1d5afff1ddb3b5a7efd06c01b00c99e2 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_bbefcea40180fe38ba7fe330ae311bf4 = $(`<div id="html_bbefcea40180fe38ba7fe330ae311bf4" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Centro De Bachillerato Tecnologico Industrial Y De Servicios Num. 165             </h4>             <hr>             <b>CCT:</b> 30DCT0430S<br>             <b>Municipio:</b> Coatepec<br>             <b>Localidad:</b> Consolapan<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-02-27<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_1d5afff1ddb3b5a7efd06c01b00c99e2.setContent(html_bbefcea40180fe38ba7fe330ae311bf4);
+            
+        
+
+        circle_marker_4efe89778b7aa0df5fd0ff4e03e5955a.bindPopup(popup_1d5afff1ddb3b5a7efd06c01b00c99e2)
+        ;
+
+        
+    
+    
+            var circle_marker_ff826ee8c9b9c2b309f0d079d9b59fe6 = L.circleMarker(
+                [19.46056, -96.95032],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_0187f60763acd18611f0bb1df0e0f4cd = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_0fe55bda057e484d980b2763286a61ba = $(`<div id="html_0fe55bda057e484d980b2763286a61ba" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Joaquin Ramirez Cabañas             </h4>             <hr>             <b>CCT:</b> 30EBH0063S<br>             <b>Municipio:</b> Coatepec<br>             <b>Localidad:</b> Coatepec<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-07 | 2026-03-13<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_0187f60763acd18611f0bb1df0e0f4cd.setContent(html_0fe55bda057e484d980b2763286a61ba);
+            
+        
+
+        circle_marker_ff826ee8c9b9c2b309f0d079d9b59fe6.bindPopup(popup_0187f60763acd18611f0bb1df0e0f4cd)
+        ;
+
+        
+    
+    
+            var circle_marker_02792df0f9f5341aa7c05e4d826969ae = L.circleMarker(
+                [19.46721, -96.78271],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_89c50d89b06f12a4ebe16adce1aea40d = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_1719231332bc9a6ccfbd70ca144281f2 = $(`<div id="html_1719231332bc9a6ccfbd70ca144281f2" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Telebachillerato Miradores Del Mar             </h4>             <hr>             <b>CCT:</b> 30ETH1020Q<br>             <b>Municipio:</b> Emiliano Zapata<br>             <b>Localidad:</b> Miradores (Miradores Del Mar)<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-13<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_89c50d89b06f12a4ebe16adce1aea40d.setContent(html_1719231332bc9a6ccfbd70ca144281f2);
+            
+        
+
+        circle_marker_02792df0f9f5341aa7c05e4d826969ae.bindPopup(popup_89c50d89b06f12a4ebe16adce1aea40d)
+        ;
+
+        
+    
+    
+            var circle_marker_7674b5e19f0cf0b09d49737fffe2ea4f = L.circleMarker(
+                [22.05425, -98.18903],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_3c06523acd99bdb42ef4665485ebb0a7 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_76daffa494c410aefe71af6df00a4976 = $(`<div id="html_76daffa494c410aefe71af6df00a4976" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Bachilleres Diurna De Panuco             </h4>             <hr>             <b>CCT:</b> 30EBH0411I<br>             <b>Municipio:</b> Pánuco<br>             <b>Localidad:</b> Pánuco<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-13<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_3c06523acd99bdb42ef4665485ebb0a7.setContent(html_76daffa494c410aefe71af6df00a4976);
+            
+        
+
+        circle_marker_7674b5e19f0cf0b09d49737fffe2ea4f.bindPopup(popup_3c06523acd99bdb42ef4665485ebb0a7)
+        ;
+
+        
+    
+    
+            var circle_marker_a4e1ed3c60c369f59ed99bcab78e43f8 = L.circleMarker(
+                [20.19525, -96.8784],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_c21930ed611c6e224be0836b462221f6 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_6972cf1a4ca3a9372f2422d675da151d = $(`<div id="html_6972cf1a4ca3a9372f2422d675da151d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Telebachillerato San Rafael             </h4>             <hr>             <b>CCT:</b> 30ETH0150C<br>             <b>Municipio:</b> San Rafael<br>             <b>Localidad:</b> San Rafael<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-20<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_c21930ed611c6e224be0836b462221f6.setContent(html_6972cf1a4ca3a9372f2422d675da151d);
+            
+        
+
+        circle_marker_a4e1ed3c60c369f59ed99bcab78e43f8.bindPopup(popup_c21930ed611c6e224be0836b462221f6)
+        ;
+
+        
+    
+    
+            var circle_marker_d131f2f8ca9acb6c3054578a2de632df = L.circleMarker(
+                [19.38741, -96.9775],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_64ce58aff71bb487767a485241b2d1d1 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_6777d1162e82891f251ce092686c41fe = $(`<div id="html_6777d1162e82891f251ce092686c41fe" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Bachilleres Teocelo             </h4>             <hr>             <b>CCT:</b> 30EBH0405Y<br>             <b>Municipio:</b> Teocelo<br>             <b>Localidad:</b> Teocelo<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-04-23<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_64ce58aff71bb487767a485241b2d1d1.setContent(html_6777d1162e82891f251ce092686c41fe);
+            
+        
+
+        circle_marker_d131f2f8ca9acb6c3054578a2de632df.bindPopup(popup_64ce58aff71bb487767a485241b2d1d1)
+        ;
+
+        
+    
+    
+            var circle_marker_42b018d9ff4bc412c92c2af27ee67431 = L.circleMarker(
+                [19.44243, -96.39838],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_87ca642dba383fe6ab026f88214a5cab = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_b2651c8810eb8a9ba7c7033a9054a3d4 = $(`<div id="html_b2651c8810eb8a9ba7c7033a9054a3d4" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Colegio De Bachilleres Del Estado De Veracruz Plantel 36 Zempoala Julio Platas Dominguez             </h4>             <hr>             <b>CCT:</b> 30ECB0036Z<br>             <b>Municipio:</b> Ursulo Galván<br>             <b>Localidad:</b> Zempoala<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-17<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_87ca642dba383fe6ab026f88214a5cab.setContent(html_b2651c8810eb8a9ba7c7033a9054a3d4);
+            
+        
+
+        circle_marker_42b018d9ff4bc412c92c2af27ee67431.bindPopup(popup_87ca642dba383fe6ab026f88214a5cab)
+        ;
+
+        
+    
+    
+            var circle_marker_0e4c376540266cd638268e17a8f8b4b8 = L.circleMarker(
+                [19.51764, -96.91668],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_19cc9ab4119e4b218182da610fdac167 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_4806f853cd4555c3aa9e9004e8ace373 = $(`<div id="html_4806f853cd4555c3aa9e9004e8ace373" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Antonio Maria De Rivera             </h4>             <hr>             <b>CCT:</b> 30EBH0203B<br>             <b>Municipio:</b> Xalapa<br>             <b>Localidad:</b> Xalapa-Enríquez<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-10<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_19cc9ab4119e4b218182da610fdac167.setContent(html_4806f853cd4555c3aa9e9004e8ace373);
+            
+        
+
+        circle_marker_0e4c376540266cd638268e17a8f8b4b8.bindPopup(popup_19cc9ab4119e4b218182da610fdac167)
+        ;
+
+        
+    
+    
+            var circle_marker_4251100a29e72d34bfef1e4e56f80e83 = L.circleMarker(
+                [19.55001, -96.93584],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_37996e26e80c488f39fc8449b63e1e3f = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_cffd694c891f42c3b73fd677a7dd8e79 = $(`<div id="html_cffd694c891f42c3b73fd677a7dd8e79" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Articulo 3Ro Constitucional             </h4>             <hr>             <b>CCT:</b> 30EBH0061U<br>             <b>Municipio:</b> Xalapa<br>             <b>Localidad:</b> Xalapa-Enríquez<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-06 | 2026-03-10<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_37996e26e80c488f39fc8449b63e1e3f.setContent(html_cffd694c891f42c3b73fd677a7dd8e79);
+            
+        
+
+        circle_marker_4251100a29e72d34bfef1e4e56f80e83.bindPopup(popup_37996e26e80c488f39fc8449b63e1e3f)
+        ;
+
+        
+    
+    
+            var circle_marker_0164eb3a8d6af47dbee7c952866e1f4f = L.circleMarker(
+                [19.57593, -96.92769],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_e50881e4792e9c4725b6cd7927b5aa92 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_18ca3b3ca1adcf1ff0b795ab0c2e4154 = $(`<div id="html_18ca3b3ca1adcf1ff0b795ab0c2e4154" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Bachilleres Experimental Mixta             </h4>             <hr>             <b>CCT:</b> 30EBH0417C<br>             <b>Municipio:</b> Xalapa<br>             <b>Localidad:</b> Xalapa-Enríquez<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-10 | 2026-03-14<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_e50881e4792e9c4725b6cd7927b5aa92.setContent(html_18ca3b3ca1adcf1ff0b795ab0c2e4154);
+            
+        
+
+        circle_marker_0164eb3a8d6af47dbee7c952866e1f4f.bindPopup(popup_e50881e4792e9c4725b6cd7927b5aa92)
+        ;
+
+        
+    
+    
+            var circle_marker_acbdf8d689f9eac20f0a2843c970b4b7 = L.circleMarker(
+                [19.5664, -96.92314],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_133f754c9f53f3d35d2ea7934be60764 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_52c0489dec0b66388c9a9267ed41ae48 = $(`<div id="html_52c0489dec0b66388c9a9267ed41ae48" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Bachilleres Unidad Y Trabajo Mixta             </h4>             <hr>             <b>CCT:</b> 30EBH0430X<br>             <b>Municipio:</b> Xalapa<br>             <b>Localidad:</b> Xalapa-Enríquez<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-09 | 2026-03-10<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_133f754c9f53f3d35d2ea7934be60764.setContent(html_52c0489dec0b66388c9a9267ed41ae48);
+            
+        
+
+        circle_marker_acbdf8d689f9eac20f0a2843c970b4b7.bindPopup(popup_133f754c9f53f3d35d2ea7934be60764)
+        ;
+
+        
+    
+    
+            var circle_marker_b2acce4bc620ef6a1aee443ad09ffd10 = L.circleMarker(
+                [19.55085, -96.9146],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_b6c2a121dff94a87c840da15b63bc96d = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_50e95bf4b11bbd23bd16cfc3a1e7c3d3 = $(`<div id="html_50e95bf4b11bbd23bd16cfc3a1e7c3d3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Centro De Bachillerato Tecnologico Industrial Y De Servicios Num. 13             </h4>             <hr>             <b>CCT:</b> 30DCT0036Q<br>             <b>Municipio:</b> Xalapa<br>             <b>Localidad:</b> Xalapa-Enríquez<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-19<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_b6c2a121dff94a87c840da15b63bc96d.setContent(html_50e95bf4b11bbd23bd16cfc3a1e7c3d3);
+            
+        
+
+        circle_marker_b2acce4bc620ef6a1aee443ad09ffd10.bindPopup(popup_b6c2a121dff94a87c840da15b63bc96d)
+        ;
+
+        
+    
+    
+            var circle_marker_b69764c1e72a6f731e4ece2d51112db0 = L.circleMarker(
+                [19.52904, -96.92333],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_4f94fca96c43a1dd134e7613a3be64d2 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_613d238c329a9f8f42deaa2bf9109b5d = $(`<div id="html_613d238c329a9f8f42deaa2bf9109b5d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Colegio Preparatorio De Xalapa             </h4>             <hr>             <b>CCT:</b> 30EBH0079T<br>             <b>Municipio:</b> Xalapa<br>             <b>Localidad:</b> Xalapa-Enríquez<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-10 | 2026-03-12<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_4f94fca96c43a1dd134e7613a3be64d2.setContent(html_613d238c329a9f8f42deaa2bf9109b5d);
+            
+        
+
+        circle_marker_b69764c1e72a6f731e4ece2d51112db0.bindPopup(popup_4f94fca96c43a1dd134e7613a3be64d2)
+        ;
+
+        
+    
+    
+            var circle_marker_43818494fa2449a102a613489a3a8136 = L.circleMarker(
+                [19.540131, -96.909043],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_a22a68291aa4ecc954f7b337c25ef7b5 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_afbbc0321ce472a2cf471551b9efc162 = $(`<div id="html_afbbc0321ce472a2cf471551b9efc162" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Plantel Conalep 162 Manuel Rivera Cambas             </h4>             <hr>             <b>CCT:</b> 30DPT0008Y<br>             <b>Municipio:</b> Xalapa<br>             <b>Localidad:</b> Xalapa-Enríquez<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-19<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_a22a68291aa4ecc954f7b337c25ef7b5.setContent(html_afbbc0321ce472a2cf471551b9efc162);
+            
+        
+
+        circle_marker_43818494fa2449a102a613489a3a8136.bindPopup(popup_a22a68291aa4ecc954f7b337c25ef7b5)
+        ;
+
+        
+    
+    
+            var circle_marker_0b6dd0268a6dad09cd127ef98441b6c5 = L.circleMarker(
+                [19.53191, -96.91941],
+                {"bubblingMouseEvents": true, "color": "#00843D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00843D", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_fbcb35fe1266c335cdbf2862d8c16626);
+        
+    
+        var popup_067c56ccf4d351323d6c4fd5a03d5b6d = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_dddf43dd28731c06c7c5f8dd3388cebd = $(`<div id="html_dddf43dd28731c06c7c5f8dd3388cebd" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 280px;">             <h4 style="margin-bottom:6px; color:#203040;">                 Ricardo Flores Magon             </h4>             <hr>             <b>CCT:</b> 30EBH0074Y<br>             <b>Municipio:</b> Xalapa<br>             <b>Localidad:</b> Xalapa-Enríquez<br>             <b>Estatus:</b> <span style="color:#00843D; font-weight:bold;">Visitada</span><br>             <b>Fecha de visita:</b> 2026-03-14<br>             <b>Teléfono:</b> nan<br>             <b>Correo:</b> No disponible<br>         </div>         </div>`)[0];
+                popup_067c56ccf4d351323d6c4fd5a03d5b6d.setContent(html_dddf43dd28731c06c7c5f8dd3388cebd);
+            
+        
+
+        circle_marker_0b6dd0268a6dad09cd127ef98441b6c5.bindPopup(popup_067c56ccf4d351323d6c4fd5a03d5b6d)
+        ;
+
+        
+    
+    
+            marker_cluster_fbcb35fe1266c335cdbf2862d8c16626.addTo(map_d86c615ca093536dda2f5fd4fb4d85ed);
+        
+    
+            var layer_control_0ce8da57607dbd5252a055b214b0d6a3_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_73bd1debfb17f48b2530fcc94bfec52e,
+                },
+                overlays :  {
+                    "Escuelas visitadas" : marker_cluster_fbcb35fe1266c335cdbf2862d8c16626,
+                },
+            };
+            let layer_control_0ce8da57607dbd5252a055b214b0d6a3 = L.control.layers(
+                layer_control_0ce8da57607dbd5252a055b214b0d6a3_layers.base_layers,
+                layer_control_0ce8da57607dbd5252a055b214b0d6a3_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_d86c615ca093536dda2f5fd4fb4d85ed);
+
+        
+</script>
+</html>
