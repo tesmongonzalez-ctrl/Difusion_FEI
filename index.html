@@ -17,7 +17,7 @@ body {
 .header {
     background: #213943;
     color: white;
-    padding: 25px 40px;
+    padding: 24px 38px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -26,25 +26,41 @@ body {
 
 .logo-area {
     display: flex;
-    gap: 18px;
+    gap: 14px;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo-area a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo-area img {
-    height: 70px;
+    height: 68px;
+    max-width: 120px;
+    object-fit: contain;
     background: white;
     border-radius: 8px;
-    padding: 5px;
+    padding: 6px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logo-area img:hover {
+    transform: scale(1.06);
+    box-shadow: 0 4px 12px rgba(255,255,255,0.35);
 }
 
 .header-title {
     text-align: center;
     flex: 1;
+    padding: 0 20px;
 }
 
 .header-title h1 {
     margin: 0;
-    font-size: 30px;
+    font-size: 31px;
 }
 
 .header-title p {
@@ -66,7 +82,7 @@ body {
 .subtitle {
     font-size: 20px;
     color: #555;
-    max-width: 850px;
+    max-width: 900px;
     margin: 0 auto 25px auto;
 }
 
@@ -154,14 +170,15 @@ body {
     margin-top: 50px;
 }
 
-@media(max-width: 700px) {
+@media(max-width: 850px) {
     .header {
         flex-direction: column;
         text-align: center;
     }
 
     .logo-area {
-        margin-bottom: 15px;
+        justify-content: center;
+        margin: 10px 0;
     }
 
     .main h2 {
@@ -174,9 +191,15 @@ body {
 <body>
 
 <div class="header">
+
     <div class="logo-area">
-        <img src="logos/uv.png" alt="Logo UV">
-        <img src="logos/fei.png" alt="Logo FEI">
+        <a href="https://www.uv.mx/" target="_blank">
+            <img src="logos/uv.jpeg" alt="Universidad Veracruzana">
+        </a>
+
+        <a href="https://www.uv.mx/fei/" target="_blank">
+            <img src="logos/fei.jpeg" alt="Facultad de Estadística e Informática">
+        </a>
     </div>
 
     <div class="header-title">
@@ -185,8 +208,27 @@ body {
     </div>
 
     <div class="logo-area">
-        <img src="logos/ciencia_datos.png" alt="Logo Ciencia de Datos">
+        <a href="https://www.uv.mx/fei/licenciatura-en-ingenieria-en-ciencia-de-datos/" target="_blank">
+            <img src="logos/datos.png" alt="Ingeniería en Ciencia de Datos">
+        </a>
+
+        <a href="https://www.uv.mx/fei/" target="_blank">
+            <img src="logos/sistemas.png" alt="Sistemas y Tecnologías de la Información">
+        </a>
+
+        <a href="https://www.uv.mx/fei/" target="_blank">
+            <img src="logos/software.png" alt="Ingeniería de Software">
+        </a>
+
+        <a href="https://www.uv.mx/fei/" target="_blank">
+            <img src="logos/ciberseguridad.png" alt="Ciberseguridad">
+        </a>
+
+        <a href="https://www.uv.mx/fei/" target="_blank">
+            <img src="logos/estadistica.png" alt="Estadística">
+        </a>
     </div>
+
 </div>
 
 <div class="main">
@@ -252,3 +294,4 @@ body {
 
 </body>
 </html>
+       
